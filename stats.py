@@ -1,15 +1,11 @@
-path_to_file = "books/frankenstein.txt"
-
 def get_book_text(path_to_file):
     with open(path_to_file) as f:
         file_contents = f.read()
         return file_contents
      
-text = get_book_text(path_to_file)
-
-def get_num_words():
+def get_num_words(text):
     num_words = len(text.split())
-    print(f"Found {num_words} total words")
+    return num_words
 
 def get_num_char(text):
     num_char = {}
@@ -27,6 +23,7 @@ def sort_on(items):
 def chars_dict_to_sorted_list(num_char):
     new_list = []
     for key in num_char:
-        new_list.append({"char": key, "num": num_char[key]})
+        if key.isalpha():
+            new_list.append({"char": key, "num": num_char[key]})
     new_list.sort(reverse=True, key=sort_on)
     return new_list
